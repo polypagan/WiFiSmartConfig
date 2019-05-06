@@ -1,4 +1,5 @@
 #include "WiFi.h"
+
 boolean attemptConnect() {
 int i;
 
@@ -8,7 +9,7 @@ int i;
     delay(500);
     Serial.print(".");
   }
-  return (i != 0);
+  return (i != 0);	// return truth of "we did NOT time out"
 }
 
 void setup() {
@@ -24,14 +25,13 @@ void setup() {
   
     //Wait for SmartConfig packet from mobile
     Serial.println("Waiting for SmartConfig.");
-    while (!WiFi.smartConfigDone()) {
+    while (! WiFi.smartConfigDone()) {
       delay(500);
       Serial.print(".");
     }
     WiFi.stopSmartConfig();
     
-    Serial.println("");
-    Serial.println("SmartConfig received.");
+    Serial.println("\nSmartConfig completed.");
   }
   WiFi.begin();
 
